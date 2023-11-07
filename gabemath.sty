@@ -1,5 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{gabemath}[2021/09/25 gabemath]
+
 %Import packages that I use often in notes and problem sets%
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
@@ -21,7 +22,10 @@
 \newenvironment{bigmath}{\everymath{\displaystyle}}{\everymath{\textstyle}}
 \newenvironment{smallmath}{\everymath{\textstyle}}{\everymath{\displaystyle}}
 
+% Create a dotted box around a text or equation
 \newcommand{\dbox}[1]{\setlength{\dashlinedash}{0.2pt}\setlength{\dashlinegap}{1.5pt}\setlength{\arrayrulewidth}{0.3pt}\begin{tabular}{:c:}\hdashline#1\\\hdashline\end{tabular}}
+
+% Create a dotted box around an equation and put it in math mode
 \newcommand{\dboxed}[1]{\setlength{\dashlinedash}{0.2pt}\setlength{\dashlinegap}{1.5pt}\setlength{\arrayrulewidth}{0.3pt}\begin{tabular}{:c:}\hdashline$#1$\\\hdashline\end{tabular}}
 \newcommand{\circled}[1]{\tikz[baseline]{%
     \node[anchor=base, draw, circle, inner sep=0, minimum width=1.2em]{#1};}}
@@ -41,32 +45,63 @@
 \newcommand{\green}[1]{{\color{green} #1}}
 % ---------------
 
+
+
+
+% ---- Brackets ----
+\newcommand{\parenth}[1]{\left(#1\right)}
+\newcommand{\sqrbrac}[1]{\left[#1\right]}
+\newcommand{\cbrac}[1]{\left\{#1\right\}}
+\newcommand{\abrac}[1]{\langle #1 \rangle}
+% ------------------
+
+
+% ------- Number Theory -------
+\newcommand{\intersect}{\cap}
+\newcommand{\union}{\cup}
+\newcommand{\seq}{\subseteq}
+\newcommand{\Natural}{\mathbb{N}}
+\newcommand{\Real}{\mathbb{R}}
+\newcommand{\Integer}{\mathbb{Z}}
+\newcommand{\Complex}{\mathbb{C}}
+\newcommand{\Universe}{\mathbb{U}}
+\newcommand{\Rational}{\mathbb{Q}}
+\newcommand{\niff}{\centernot\iff}
+
+% --- Logic Symbols ---
+\newcommand{\logor}[2]{\parenth{#1\lor #2}}
+\newcommand{\logand}[2]{\parenth{#1\land #2}}
+\newcommand{\logxor}[2]{\parenth{#1\oplus #2}}
+\newcommand{\lognor}[2]{\overline{\parenth{#1\lor #2}}}
+\newcommand{\lognand}[2]{\overline{\parenth{#1\land #2}}}
+\newcommand{\lognxor}[2]{\overline{\parenth{#1\oplus #2}}}
+
+% --- Propositional/Deductive Logic ---
+\newcommand{\imp}{\supset}
+\newcommand{\nimplies}{\centernot\implies}
+\newcommand{\entails}{\models}
+\newcommand{\proves}{\vdash}
+\newcommand{\contradiction}{\bot}
+\newcommand{\derive}[2]{\genfrac{}{}{0pt}{0}{\genfrac{}{}{0pt}{0}{#1}{\vdots}}{#2}}
+% ----------------------------
+
+
+% ---- Calculus Algebra and Physics ----
 \newcommand{\pd}[2]{\frac{\partial{#1}}{\partial{#2}}}
 \newcommand{\pdn}[3]{\frac{\partial^{#3}{#1}}{\partial{#2}^{#3}}}
 \newcommand{\der}[2]{\frac{d#1}{d#2}}
 \newcommand{\derx}{\frac{d}{dx}}
 \newcommand{\dert}{\frac{d}{dt}}
-\newcommand{\del}{\nabla}
-\newcommand{\dvg}{\nabla\cdot}
-\newcommand{\curl}{\nabla\times}
-\newcommand{\parenth}[1]{\left(#1\right)}
-\newcommand{\sqrbrac}[1]{\left[#1\right]}
-\newcommand{\cbrac}[1]{\left\{#1\right\}}
-\newcommand{\abrac}[1]{\langle #1 \rangle}
-\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
-\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
 \newcommand{\intline}{\bigg\rvert}
 \newcommand{\limit}[2]{\lim_{{#1\xrightarrow{}#2}}}
-\newcommand{\piecewise}[1]{\left\{\begin{tabular}{@{}l r}#1\end{tabular}\right.}
-\newcommand{\cc}{\frac{1}{4\pi\epsilon_0}}
-\newcommand{\abs}[1]{\left|#1\right|}
-\newcommand{\aabs}[1]{\left|\left|#1\right|\right|}
 \newcommand{\ontop}[2]{\genfrac{}{}{0pt}{0}{#1}{#2}}
 \newcommand{\threeontop}[3]{\genfrac{}{}{0pt}{0}{\genfrac{}{}{0pt}{0}{#1}{#2}}{#3}}
 \renewcommand{\choose}[2]{\genfrac{(}{)}{0pt}{}{#1}{#2}}
 \newcommand{\infsum}[1]{\sum_{#1}^\infty}
 \newcommand{\powerseries}{\sum_{n=0}^\infty c_n(x-a)^n}
-\newcommand{\mline}{&\vline&}
+
+% --- Matrices and Vectors ---
+\newcommand{\aabs}[1]{\left|\left|#1\right|\right|}
 \newcommand{\adj}{\text{adj}}
 \newcommand{\vecof}[2]{\vec{#1}\parenth{#2}}
 \newcommand{\vect}[1]{\vec{#1}(t)}
@@ -79,24 +114,15 @@
 \newcommand{\threevec}[3]{\begin{bmatrix}#1\\#2\\#3\end{bmatrix}}
 \newcommand{\twovec}[2]{\begin{bmatrix}#1\\#2\end{bmatrix}}
 \newcommand{\vecdet}[2]{\det\begin{pmatrix}\vec{i} & \vec{j} & \vec{k}\\ #1\\ #2\end{pmatrix}}
+% used to insert a vertical line in a matrix
+\newcommand{\mline}{&\vline&}
+\newcommand{\proj}{\text{proj}}
+\newcommand{\im}{\text{im}}
 
-\renewcommand{\comment}[1]
-
-\newcommand{\intersect}{\cap}
-\newcommand{\union}{\cup}
-\newcommand{\seq}{\subseteq}
-\newcommand{\Natural}{\mathbb{N}}
-\newcommand{\Real}{\mathbb{R}}
-\newcommand{\Integer}{\mathbb{Z}}
-\newcommand{\Complex}{\mathbb{C}}
-\newcommand{\Universe}{\mathbb{U}}
-\newcommand{\Rational}{\mathbb{Q}}
-\newcommand{\niff}{\centernot\iff}
-\newcommand{\imp}{\supset}
-\newcommand{\nimplies}{\centernot\implies}
-\newcommand{\entails}{\models}
-\newcommand{\proves}{\vdash}
-\newcommand{\contradiction}{\bot}
+% --- Algebra ---
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\piecewise}[1]{\left\{\begin{tabular}{@{}l r}#1\end{tabular}\right.}
+% Generates "R^[1] ---> R^[2]" (function over real numbers). The two arguments are the exponents of the two 'Real' symbols. If the exponent is 1, it is not displayed.
 \newcommand{\rtor}[2]{%
   \IfInteger{#1}{%
     \ifboolexpr{ test {\ifnumcomp{#1}{=}{1}} }%
@@ -116,26 +142,29 @@
        {\Real^{#1}\rightarrow\Real^{#2}}}%
      {\Real^{#1}\rightarrow\Real^{#2}}}}
 
-\newcommand{\derive}[2]{\genfrac{}{}{0pt}{0}{\genfrac{}{}{0pt}{0}{#1}{\vdots}}{#2}}
-\newcommand{\using}[1]{\quad\text{(#1)}}
+% --- Physics ---
+\newcommand{\del}{\nabla}
+\newcommand{\dvg}{\nabla\cdot}
+\newcommand{\curl}{\nabla\times}
+\newcommand{\cc}{\frac{1}{4\pi\epsilon_0}}
 
-\newcommand{\logor}[2]{\parenth{#1\lor #2}}
-\newcommand{\logand}[2]{\parenth{#1\land #2}}
-\newcommand{\logxor}[2]{\parenth{#1\oplus #2}}
-\newcommand{\lognor}[2]{\overline{\parenth{#1\lor #2}}}
-\newcommand{\lognand}[2]{\overline{\parenth{#1\land #2}}}
-\newcommand{\lognxor}[2]{\overline{\parenth{#1\oplus #2}}}
-
-\newcommand{\proj}{\text{proj}}
-\newcommand{\im}{\text{im}}
-
-\newcommand{\xmark}{\ding{55}}
-
-\newcommand{\fillin}{\text{\textcolor{red}{\textbf{FILL IN}}}}
-
+% --- General/Other Math ---
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
 \renewcommand{\bar}{\overline}
+% --------------------------------------
 
 
+% ---- Other Note-Taking Commands ----
+\newcommand{\xmark}{\ding{55}}
+\newcommand{\fillin}{{\color{red}\text{FILLIN}}}
+\renewcommand{\comment}[0]{}
+% ------------------------------------
+
+
+% ---- Unsorted ----
+\newcommand{\using}[1]{\quad\text{(#1)}}
+% ------------------
 
 % ---- Macros ----
 \newcommand{\pth}[1]{\parenth{#1}}
