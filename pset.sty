@@ -1,0 +1,7 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{pset}[2021/09/25 pset]
+
+\renewcommand{\thesubsection}{(\alph{subsection})}
+\renewcommand{\thesubsubsection}{(\roman{subsubsection})}
+
+\AddToHook{cmd/section/before}{\newpage}
